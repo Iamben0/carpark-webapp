@@ -17,7 +17,7 @@ function CarparkAvailability() {
   const [timestamp, setTimestamp] = useState(new Date().toISOString());
   const [carparkData, setCarparkData] = useState([]);
   const readableTimestamp = new Date(timestamp).toLocaleString();
-  
+
   useEffect(() => {
     const encodedTimestamp = encodeURIComponent(timestamp); // URL encode timestamp
     const apiUrl = `https://api.data.gov.sg/v1/transport/carpark-availability?date_time=${encodedTimestamp}`;
@@ -68,7 +68,7 @@ function CarparkAvailability() {
             top='0'
             background='teal'>
             <Tr>
-              <Th>Carpark</Th>
+              <Th>Carpark No</Th>
               <Th>Lot Type</Th>
               <Th>Total Lots</Th>
               <Th>Lots Available</Th>
