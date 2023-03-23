@@ -4,18 +4,19 @@ Get the latest carpark availability in Singapore
 
 - Data is retrieved every minute
 
-You will get a table with the Carpark No, Lot Type, Total Lots, and Lots Aavailable
-
-TODO:
-
-- Add the carpark address that matches with the carpark No
-- Add a search bar
+You will get a table with the Carpark No, Lot Type, Total Lots, and Lots Available
 
 ![main](https://github.com/Iamben0/carpark-webapp/blob/master/pics/main.PNG)
 
 ![changing of time stamp](https://github.com/Iamben0/carpark-webapp/blob/master/pics/changeTimestamp.PNG)
 
 ![after changes](https://github.com/Iamben0/carpark-webapp/blob/master/pics/afterTimestamp.PNG)
+
+## TODO:
+
+- Add the carpark address that matches with the carpark No
+- Add a search bar
+- Add a sort function
 
 ## Getting Started with Create React App
 
