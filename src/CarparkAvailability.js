@@ -17,6 +17,7 @@ function CarparkAvailability() {
   const [timestamp, setTimestamp] = useState(new Date().toISOString());
   const [carparkData, setCarparkData] = useState([]);
   const readableTimestamp = new Date(timestamp).toLocaleString();
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const encodedTimestamp = encodeURIComponent(timestamp); // URL encode timestamp
@@ -36,6 +37,24 @@ function CarparkAvailability() {
     setTimestamp(event.target.value);
   };
 
+  useEffect(() => {
+    // const encodedQuery = encodeURIComponent(query);
+    const apiUrl = `https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c&q=${query}`;
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setQuery(response.data.results.records);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [query]);
+
+  const handleQueryChange = (event) => {
+    setQuery(event.target.value);
+  };
+
   return (
     <Flex
       justifyContent='center'
@@ -47,17 +66,29 @@ function CarparkAvailability() {
         pt='5'>
         Carpark Availability ({readableTimestamp})
       </Flex>
-      <Input
-        name='timestamp'
-        placeholder='Select Date and Time'
-        size='md'
-        type='datetime-local'
-        value={timestamp}
-        onChange={handleTimestampChange}
-        maxWidth='300'
-        mb='5'
-        mt='5'
-      />
+      <Flex
+        flexDir='column'
+        pb='5'>
+        <Input
+          name='timestamp'
+          variant='filled'
+          placeholder='Select Date and Time'
+          size='md'
+          type='datetime-local'
+          value={timestamp}
+          onChange={handleTimestampChange}
+          maxWidth='300'
+          mb='5'
+          mt='5'
+        />
+        <Input
+          placeholder='Search'
+          width='auto'
+          variant='filled'
+          value={query}
+          onChange={handleQueryChange}
+        />
+      </Flex>
       <Box
         overflowY='auto'
         maxHeight='300px'
