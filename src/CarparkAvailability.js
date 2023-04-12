@@ -17,7 +17,6 @@ function CarparkAvailability() {
   const [timestamp, setTimestamp] = useState(new Date().toISOString());
   const [carparkData, setCarparkData] = useState([]);
   const readableTimestamp = new Date(timestamp).toLocaleString();
-  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const encodedTimestamp = encodeURIComponent(timestamp); // URL encode timestamp
@@ -35,24 +34,6 @@ function CarparkAvailability() {
 
   const handleTimestampChange = (event) => {
     setTimestamp(event.target.value);
-  };
-
-  useEffect(() => {
-    // const encodedQuery = encodeURIComponent(query);
-    const apiUrl = `https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c&q=${query}`;
-
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setQuery(response.data.results.records);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [query]);
-
-  const handleQueryChange = (event) => {
-    setQuery(event.target.value);
   };
 
   return (
@@ -80,13 +61,6 @@ function CarparkAvailability() {
           maxWidth='300'
           mb='5'
           mt='5'
-        />
-        <Input
-          placeholder='Search'
-          width='auto'
-          variant='filled'
-          value={query}
-          onChange={handleQueryChange}
         />
       </Flex>
       <Box
