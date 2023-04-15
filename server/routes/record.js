@@ -18,26 +18,40 @@ console.log('db_connect:', db_connect);
 
 // get all car park information
 recordRoutes.route('/result/records').get(function (req, res) {
-  let db_connect = dbo.getDb('hdb_carpark');
-  db_connect
-    .collection('carpark_info')
-    .find({})
-    .project({ 'result.records': 1 })
-    .toArray(function (err, result) {
-      if (err) throw err;
-      res.json(result[0].result.records);
-    });
+  try {
+    let db_connect = dbo.getDb('hdb_carpark');
+    db_connect
+      .collection('carpark_info')
+      .find({})
+      .project({ 'result.records': 1 })
+      .toArray(function (err, result) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(result[0].result.records, null, 2));
+      });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 // get a single car park information by car_park_no
-recordRoutes.route('/record/:id').get(function (req, res) {
+recordRoutes.route('/result/records/:car_park_no').get(function (req, res) {
   let db_connect = dbo.getDb('hdb_carpark');
-  let myquery = { 'result.records.car_park_no': new ObjectId(req.params.id) };
+  const car_park_no = req.params.car_park_no;
   db_connect
     .collection('carpark_info')
-    .findOne(myquery, { 'result.records.$': 1 }, function (err, result) {
-      if (err) throw err;
-      res.json(result.result.records[0]);
+    .findOne({ 'result.records.car_park_no': car_park_no })
+    .then(function (result) {
+      if (!result) {
+        res.status(404).send(`Car park ${car_park_no} not found`);
+        return;
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(result.result.records[0], null, 2));
+    })
+    .catch(function (err) {
+      console.log(err);
+      res.status(500).send('Internal server error');
     });
 });
 
