@@ -1,97 +1,66 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
+  Flex,
+  Alert,
+  AlertIcon,
+  AlertTitle,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  Box,
-  Flex,
-  Input,
 } from '@chakra-ui/react';
-import axios from 'axios';
 
 function CarparkInfo() {
-  const [query, setQuery] = useState('');
+  const [records, setRecords] = useState([]);
+  const [error, setError] = useState(null);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    // const encodedQuery = encodeURIComponent(query);
-    const apiUrl = `https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c&q=${query}`;
-
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setQuery(response.data.results.records);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [query]);
-
-  // const handleQueryChange = (event) => {
-  //   setQuery(event.target.value);
-  // };
-
+    async function getRecords() {
+      try {
+        const response = await fetch('http://localhost:5000/result/records');
+        if (!response.ok) {
+          throw new Error(`An error occurred: ${response.statusText}`);
+        }
+        const records = await response.json();
+        setRecords(records);
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+    getRecords();
+  }, []);
   return (
-    <Flex
-      justifyContent='center'
-      flexDirection='column'
-      alignItems='center'>
-      <Flex
-        justifyContent='center'
-        fontSize='lg'
-        pt='5'></Flex>
-      <Flex
-        flexDir='column'
-        pb='5'>
-        {/* <Input
-          placeholder='Search'
-          width='auto'
-          variant='filled'
-          value={query}
-          onChange={handleQueryChange}
-        /> */}
-      </Flex>
-      <Box
-        overflowY='auto'
-        maxHeight='300px'
-        maxWidth='500px'>
-        <Table colorScheme='telegram'>
-          <Thead
-            position='sticky'
-            top='0'
-            background='teal'>
-            <Tr>
-              <Th>Carpark No</Th>
-              <Th>Lot Type</Th>
-              <Th>Total Lots</Th>
-              <Th>Lots Available</Th>
+    <Table>
+      <Thead>
+        <Tr>
+          <Th>Carpark Number</Th>
+          <Th>Carpark Address</Th>
+          <Th>Free Parking</Th>
+          <Th>Night Parking</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {error ? (
+          <Alert status='error'>
+            <AlertIcon />
+            <AlertTitle>{error}</AlertTitle>
+          </Alert>
+        ) : (
+          records.map((carPark) => (
+            <Tr key={carPark._id}>
+              <Td>{carPark.car_park_no}</Td>
+              <Td>{carPark.address}</Td>
+              <Td>{carPark.free_parking}</Td>
+              <Td>{carPark.night_parking}</Td>
             </Tr>
-          </Thead>
-          <Tbody>
-            {carparkData.map((carpark, index) => (
-              <Tr key={index}>
-                <Td>{carpark.carpark_number}</Td>
-                <Td>{carpark.carpark_info[0].lot_type}</Td>
-                <Td>{carpark.carpark_info[0].total_lots}</Td>
-                <Td>{carpark.carpark_info[0].lots_available}</Td>
-              </Tr>
-            ))}
-          </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>Carpark</Th>
-              <Th>Lot Type</Th>
-              <Th>Total Lots</Th>
-              <Th>Lots Available</Th>
-            </Tr>
-          </Tfoot>
-        </Table>
-      </Box>
-    </Flex>
+          ))
+        )}
+      </Tbody>
+    </Table>
   );
 }
-
 export default CarparkInfo;
