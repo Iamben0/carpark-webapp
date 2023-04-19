@@ -18,7 +18,7 @@ You will get a table with the Carpark No, Lot Type, Total Lots, and Lots Availab
 - Add a search bar
 - Add a sort function
 
-~~## Getting Started with Create React App~~
+## ~~Getting Started with Create React App~~
 ~~This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).~~ _Deprecated_
 
 ## Dependencies
