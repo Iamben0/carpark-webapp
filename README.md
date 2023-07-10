@@ -17,7 +17,7 @@ You will get a table with the Carpark No, Lot Type, Total Lots, and Lots Availab
 - Add the carpark address that matches with the carpark No (Done)
 - Add a search bar
 
-~~## Getting Started with Create React App~~
+## ~~Getting Started with Create React App~~
 ~~This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).~~ _Deprecated_
 
 ## Dependencies
