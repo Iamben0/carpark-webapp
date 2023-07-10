@@ -48,10 +48,10 @@ function CarparkInfo() {
             position='sticky'
             top='0'>
             <Tr>
-              <Th>Carpark Number</Th>
-              <Th>Carpark Address</Th>
-              <Th>Free Parking</Th>
-              <Th>Night Parking</Th>
+              <Th color='white'>Carpark Number</Th>
+              <Th color='white'>Carpark Address</Th>
+              <Th color='white'>Free Parking</Th>
+              <Th color='white'>Night Parking</Th>
             </Tr>
           </Thead>
           <Tbody>

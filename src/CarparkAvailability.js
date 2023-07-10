@@ -74,10 +74,10 @@ function CarparkAvailability() {
             top='0'
             background='#598392'>
             <Tr>
-              <Th>Carpark No</Th>
-              <Th>Lot Type</Th>
-              <Th>Total Lots</Th>
-              <Th>Lots Available</Th>
+              <Th color='white'>Carpark No</Th>
+              <Th color='white'>Lot Type</Th>
+              <Th color='white'>Total Lots</Th>
+              <Th color='white'>Lots Available</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -92,10 +92,10 @@ function CarparkAvailability() {
           </Tbody>
           <Tfoot>
             <Tr>
-              <Th>Carpark</Th>
-              <Th>Lot Type</Th>
-              <Th>Total Lots</Th>
-              <Th>Lots Available</Th>
+              <Th color='white'>Carpark</Th>
+              <Th color='white'>Lot Type</Th>
+              <Th color='white'>Total Lots</Th>
+              <Th color='white'>Lots Available</Th>
             </Tr>
           </Tfoot>
         </Table>
