@@ -47,9 +47,7 @@ function CarparkAvailability() {
         pt='5'>
         Carpark Availability ({readableTimestamp})
       </Flex>
-      <Flex
-        flexDir='column'
-        pb='5'>
+      <Flex pb='5'>
         <Input
           name='timestamp'
           variant='filled'
@@ -66,12 +64,15 @@ function CarparkAvailability() {
       <Box
         overflowY='auto'
         maxHeight='300px'
-        maxWidth='500px'>
-        <Table colorScheme='telegram'>
+        maxWidth='500px'
+        borderRadius='15'>
+        <Table
+          variant='simple'
+          backgroundColor='#14213d'>
           <Thead
             position='sticky'
             top='0'
-            background='teal'>
+            background='#598392'>
             <Tr>
               <Th>Carpark No</Th>
               <Th>Lot Type</Th>
