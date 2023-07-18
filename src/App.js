@@ -15,10 +15,10 @@ function App() {
       justifyContent='center'
       alignItems='center'
       backgroundColor='#01161e'>
-      <Flex pb='20'>
+      <Flex pb='10'>
         <CarparkAvailability />
       </Flex>
-      <Flex>
+      <Flex pb='10'>
         <CarparkInfo />
       </Flex>
     </Flex>
