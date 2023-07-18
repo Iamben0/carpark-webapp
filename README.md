@@ -12,15 +12,23 @@ You will get a table with the Carpark No, Lot Type, Total Lots, and Lots Availab
 
 ![after changes](https://github.com/Iamben0/carpark-webapp/blob/master/pics/afterTimestamp.PNG)
 
+UPDATE:
+
+User able to get another table with Carpark Address, Free Parking and Night Parking
+
+![main_v2](https://github.com/Iamben0/carpark-webapp/blob/master/pics/main_v2.PNG)
+
 ## TODO:
 
-- Add the carpark address that matches with the carpark No (Done)
+- Add the carpark address that matches with the carpark No &#x2611
 - Add a search bar
 
 ## ~~Getting Started with Create React App~~
+
 ~~This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).~~ _Deprecated_
 
 ## Dependencies
+
 **Main Folder**
 npm i @chakra-ui/react
 npm i axios
