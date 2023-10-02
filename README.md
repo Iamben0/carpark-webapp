@@ -24,7 +24,7 @@ User is now able to search via the Carpark Number to find the Lots Available fas
 
 ![main_v3](https://github.com/Iamben0/carpark-webapp/blob/master/pics/main_v3.PNG)
 
-![search_changes] (https://github.com/Iamben0/carpark-webapp/blob/master/pics/searchCarparkNumber.PNG)
+![search changes](https://github.com/Iamben0/carpark-webapp/blob/master/pics/searchCarparkNumber.PNG)
 
 ## TODO:
 
