@@ -20,7 +20,11 @@ User able to get another table with Carpark Address, Free Parking and Night Park
 
 ## UPDATE - Sep 2023:
 
-User is now able to search via <Table name> to find the Lots Available faster
+User is now able to search via the Carpark Number to find the Lots Available faster
+
+![main_v3]https://github.com/Iamben0/carpark-webapp/blob/master/pics/main_v3.PNG?raw=true
+
+
 ## TODO:
 
 - Add the carpark address that matches with the carpark No :heavy_check_mark:
