@@ -8,11 +8,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v1
         with:
           node-version: '18.x'      
 
@@ -25,7 +25,7 @@ jobs:
         run: |
           cd ./client
           npm install
-          npm run build
+          npm run build --if-present
           cp -r ./build ../server/public
             
       - name: Upload artifact for deployment job
