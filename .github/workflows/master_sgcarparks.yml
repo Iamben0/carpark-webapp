@@ -1,0 +1,30 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - SGCarparks
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install server npm packages
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./server
+
+      - name: Start server in the background
+        env: 
+          ATLAS_URI: ${{ secrets.ATLAS_URI }}
+        run: (cd ./server && echo "ATLAS_URI=$ATLAS_URI" > config.env  && npm start &)
+
+      - name: Start React app in the background
+        run: (cd .. && npm start &)

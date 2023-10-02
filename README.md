@@ -39,14 +39,20 @@ User is now able to search via the Carpark Number to find the Lots Available fas
 ## Dependencies
 
 **Main Folder**
-npm i @chakra-ui/react
-npm i axios
+<br/>
+`npm i @chakra-ui/react`
+<br/>
+`npm i axios`
 
 **Server Folder**
-npm i mongodb@4.1.1
-npm i express
-npm i cors
-npm i dotenv
+<br/>
+`npm i mongodb@4.1.1`
+<br/>
+`npm i express`
+<br/>
+`npm i cors`
+<br/>
+`npm i dotenv`
 
 ### Available Scripts
 
