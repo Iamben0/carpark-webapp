@@ -12,16 +12,19 @@ You will get a table with the Carpark No, Lot Type, Total Lots, and Lots Availab
 
 ![after changes](https://github.com/Iamben0/carpark-webapp/blob/master/pics/afterTimestamp.PNG)
 
-UPDATE - July 2023:
+## UPDATE - July 2023:
 
 User able to get another table with Carpark Address, Free Parking and Night Parking
 
 ![main_v2](https://github.com/Iamben0/carpark-webapp/blob/master/pics/main_v2.PNG)
 
+## UPDATE - Sep 2023:
+
+User is now able to search via <Table name> to find the Lots Available faster
 ## TODO:
 
 - Add the carpark address that matches with the carpark No :heavy_check_mark:
-- Add a search bar
+- Add a search bar :heavy_check_mark:
 
 ## ~~Getting Started with Create React App~~
 

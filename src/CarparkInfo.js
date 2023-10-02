@@ -11,6 +11,7 @@ import {
 	Tr,
 	Th,
 	Td,
+	Heading,
 } from '@chakra-ui/react';
 
 function CarparkInfo() {
@@ -34,7 +35,10 @@ function CarparkInfo() {
 		getRecords();
 	}, []);
 	return (
-		<Flex>
+		<Flex flexDirection='column'>
+			<Heading align='center' size='lg' pb='3'>
+				Carpark Information
+			</Heading>
 			<Box
 				overflowY='auto'
 				maxHeight='400px'

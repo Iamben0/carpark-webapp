@@ -42,7 +42,7 @@ function CarparkAvailability() {
 	const handleSearchChange = (e) => {
 		const text = e.target.value;
 
-		// filter carparkData by carpark number 
+		// filter carparkData by carpark number
 		setFilteredCarparkData(
 			carparkData
 				.filter((carpark) => carpark.carpark_number.includes(text))
@@ -67,7 +67,9 @@ function CarparkAvailability() {
 			</Heading>
 			<Flex>
 				<Flex pb='5' w='350px' flexDirection='column' justifyContent='center'>
-					<Heading size='m'>Select Date and Time</Heading>
+					<Heading size='sm' pb='2'>
+						Select Date and Time
+					</Heading>
 					<Input
 						name='timestamp'
 						variant='filled'
@@ -78,7 +80,7 @@ function CarparkAvailability() {
 						border='1px solid white'
 					/>
 
-					<Heading size='m' mt='5'>
+					<Heading size='sm' pt='5' pb='2'>
 						Search
 					</Heading>
 					<Input
