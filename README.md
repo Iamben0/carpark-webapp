@@ -59,7 +59,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 In the server directory, you can run:
 
-### node server.js
+### `node server.js`
  
 This will run the database for Carpark Information Table using ExpressJS.
 Open [http://localhost:5000/result/records](http://localhost:5000/result/records) to view it in your browser.
