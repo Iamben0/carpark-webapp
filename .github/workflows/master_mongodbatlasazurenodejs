@@ -23,7 +23,7 @@ jobs:
       
       - name: Install npm packages, build then copy files - client
         run: |
-          cd ./client
+          cd ../
           npm install
           npm run build --if-present
           cp -r ./build ../server/public
