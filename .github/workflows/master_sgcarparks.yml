@@ -21,6 +21,39 @@ jobs:
         with:
           node-version: '18.x'
 
+          # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - mongodbatlasazurenodejs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'      
+
+      - name: Install npm packages - server
+        run: |
+          cd ./server
+          npm install       
+      
+      - name: Install npm packages, build then copy files - client
+        run: |
+          cd ../
+          npm install
+          npm run build
+          cp -r ./build ../server/public
+            
       - name: npm install, build, and test
         run: |
           npm install
