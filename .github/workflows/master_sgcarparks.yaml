@@ -20,7 +20,7 @@ jobs:
         working-directory: ./client
         run: |
           npm install
-          npm run test
+          npm run test --if-present
 
       # Install dependencies, export environment variables to be used by application and run tests for the server application
       - name: Install and Test Server
@@ -28,4 +28,4 @@ jobs:
         run: |
           npm install
           export ATLAS_URI=$ATLAS_URI
-          npm run test
+          npm run test --if-present
