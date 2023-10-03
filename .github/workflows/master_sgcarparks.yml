@@ -18,16 +18,16 @@ jobs:
     environment: Testing
     strategy:
       matrix:
-        node-version: [16.x , 18.x]
-      max-parallel: 1  
+        node-version: [16.x, 18.x]
+      max-parallel: 1
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        with: 
+        with:
           ref: 'master'
-        
+
       - name: Install server npm packages
         uses: npm install
         with:
@@ -39,9 +39,8 @@ jobs:
           working-directory: ./
 
       - name: Start server in the background
-        env: 
-          ATLAS_URI: ${ secrets.ATLAS_URI }
-        run: (cd ./server && echo "ATLAS_URI=$ATLAS_URI" > config.env  && npm start &)
+
+        run: (cd ./server && echo "ATLAS_URI" > config.env  && npm start &)
 
       - name: Start React app in the background
         run: (cd ../ && npm start &)
