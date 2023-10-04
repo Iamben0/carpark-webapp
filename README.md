@@ -28,9 +28,10 @@ User is now able to search via the Carpark Number to find the Lots Available fas
 
 ## TODO:
 
-- Add the carpark address that matches with the carpark No :heavy_check_mark:
-- Add a search bar :heavy_check_mark:
-- Search to change Carpark Information Table 
+- Added the Carpark address that matches with the Carpark No :heavy_check_mark:
+- Added a search bar :heavy_check_mark:
+ - Look up dynamically to change the Carpark Availability Table - In Progress
+ - Look up dynamically to change the Carpark Information Table 
 
 ## ~~Getting Started with Create React App~~
 
@@ -38,11 +39,9 @@ User is now able to search via the Carpark Number to find the Lots Available fas
 
 ## Dependencies
 
-**Main Folder**
+**Client Folder**
 <br/>
-`npm i @chakra-ui/react`
-<br/>
-`npm i axios`
+`npm i`
 
 **Server Folder**
 <br/>
@@ -56,7 +55,7 @@ User is now able to search via the Carpark Number to find the Lots Available fas
 
 ### Available Scripts
 
-In the project directory, you can run:
+In the client directory, you can run:
 
 ### `npm start`
 
