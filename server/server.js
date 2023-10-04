@@ -14,6 +14,7 @@ app.use(require('./routes/record'));
 // Serve static assets if in production
 app.use(express.static('./client/build'));
 
+var path = require('path');
 app.get('*', (req, res) => {
 	//our GET route needs to point to the index.html in our build
 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
