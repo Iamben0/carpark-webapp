@@ -39,12 +39,12 @@ jobs:
       - name: Install server npm packages
         uses: bahmutov/npm-install@v1
         with:
-          working-directory: /server
+          working-directory: ./server
 
       - name: Install client npm packages
         uses: bahmutov/npm-install@v1
         with:
-          working-directory: /client
+          working-directory: ./client
 
       - name: Start server in the background
         env: 
