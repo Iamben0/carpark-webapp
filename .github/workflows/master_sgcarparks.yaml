@@ -36,15 +36,15 @@ jobs:
         with: 
           ref: 'master'
 
-      - name: Install server npm packages
-        uses: bahmutov/npm-install@v1
-        with:
-          working-directory: ./server
-
       - name: Install client npm packages
         uses: bahmutov/npm-install@v1
         with:
           working-directory: ./client
+          
+      - name: Install server npm packages
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./server
 
       - name: Start server in the background
         env: 
