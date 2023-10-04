@@ -56,4 +56,4 @@ jobs:
         with:
           app-name: 'SGCarparks'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}
-          package: ./client/build
+          package: ./client/
