@@ -37,12 +37,12 @@ jobs:
           ref: 'master'
 
       - name: Install client npm packages
-        uses: npm i
+        uses: bahmutov/npm-install@v1
         with:
           working-directory: ./client
 
       - name: Install server npm packages
-        uses: npm i
+        uses: bahmutov/npm-install@v1
         with:
           working-directory: ./server
 
