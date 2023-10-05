@@ -1,0 +1,55 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches:
+      - master
+      - deployment
+  pull_request:
+    branches:
+      - master
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+
+  build:
+    # This is telling GitHub to run the workflow on the latest version of Ubuntu.
+    runs-on: ubuntu-latest
+    environment: Testing
+    strategy:
+      matrix:
+        node-version: [18.x]
+      max-parallel: 1
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          ref: 'master'
+
+      - name: Install client npm packages
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./client
+
+      - name: Install server npm packages
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./server
+
+      - name: Start server in the background
+        env:
+          ATLAS_URI: ${{ secrets.ATLAS_URI }}
+        run: (cd ./server && echo "ATLAS_URI=$ATLAS_URI" > config.env  && npm start &)
+
+      - name: Start React app in the background
+        run: (cd ./client && npm start &)
