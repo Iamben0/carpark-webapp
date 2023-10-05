@@ -1,55 +1,61 @@
-# This is a basic workflow to help you get started with Actions
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: CI
+name: Build and deploy Node.js app to Azure Web App - SGCarparks
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
       - master
       - deployment
-  pull_request:
-    branches:
-      - master
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-
   build:
-    # This is telling GitHub to run the workflow on the latest version of Ubuntu.
     runs-on: ubuntu-latest
-    environment: Testing
-    strategy:
-      matrix:
-        node-version: [18.x]
-      max-parallel: 1
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          ref: 'master'
+          node-version: '18.x'
 
-      - name: Install client npm packages
-        uses: bahmutov/npm-install@v1
+      - name: Install npm packages - server
+        run: |
+          cd ./server
+          npm install
+
+      - name: Install npm packages, build then copy files - client
+        run: |
+          cd ./client
+          npm install
+          npm run build
+          cp -r ./build ../server/public
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
         with:
-          working-directory: ./client
+          name: SGCarparks-app
+          path: ./server
 
-      - name: Install server npm packages
-        uses: bahmutov/npm-install@v1
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
         with:
-          working-directory: ./server
+          name: SGCarparks-app
 
-      - name: Start server in the background
-        env:
-          ATLAS_URI: ${{ secrets.ATLAS_URI }}
-        run: (cd ./server && echo "ATLAS_URI=$ATLAS_URI" > config.env  && npm start &)
-
-      - name: Start React app in the background
-        run: (cd ./client && npm start &)
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'SGCarparks'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}
+          package: .
