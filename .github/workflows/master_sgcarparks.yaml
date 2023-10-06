@@ -32,8 +32,7 @@ jobs:
           cd ./client
           npm install
           npm run build --if-present
-        working-directory:
-          .
+        working-directory: .
           # cp -r ./build ../server/public
 
       # - name: Upload artifact for deployment job
@@ -44,8 +43,9 @@ jobs:
 
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v2
-        with:
+        with: 
           app-name: SGCarparks
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_058064b3a7a64ba294ae10b5a7811013 }}
           package: .
 
   # deploy:
