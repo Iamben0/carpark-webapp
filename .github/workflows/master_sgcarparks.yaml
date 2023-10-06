@@ -21,25 +21,33 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-          cache: 'npm'
 
       - name: Install npm packages - server
         run: |
           cd ./server
           npm install
+          node server.js
 
       - name: Install npm packages, build then copy files - client
         run: |
           cd ./client
           npm install
           npm run build --if-present
-          cp -r ./build ../server/public
+        working-directory: /carpark-webapp
+          # cp -r ./build ../server/public
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
-          name: SGCarparks-app
-          path: ./server
+      # - name: Upload artifact for deployment job
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: SGCarparks-app
+      #     path: ./
+
+      - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,7 +66,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'carpark-webapp'
+          app-name: SGCarparks
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}
-          package: .
+          package: /carpark-webapp
