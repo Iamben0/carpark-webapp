@@ -21,7 +21,7 @@ jobs:
 
   build:
     # This is telling GitHub to run the workflow on the latest version of Ubuntu.
-    runs-on: window-latest
+    runs-on:  windows-latest
     environment: Testing
     strategy:
       matrix:
