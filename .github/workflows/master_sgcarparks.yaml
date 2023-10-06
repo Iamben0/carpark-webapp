@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: window-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -49,7 +49,7 @@ jobs:
       #     path: release.zip
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: window-latest
     needs: build
     environment:
       name: 'Production'
