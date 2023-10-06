@@ -45,28 +45,28 @@ jobs:
       - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        app-name: SGCarparks-app
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        package: /carpark-webapp
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   environment:
+  #     name: 'Production'
+  #     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: SGCarparks-app
+  #   steps:
+  #     - name: Download artifact from build job
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: SGCarparks-app
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: SGCarparks
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}
-          package: /carpark-webapp
+  #     - name: 'Deploy to Azure Web App'
+  #       id: deploy-to-webapp
+  #       uses: azure/webapps-deploy@v2
+  #       with:
+  #         app-name: SGCarparks
+  #         slot-name: 'Production'
+  #         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}
+  #         package: .
