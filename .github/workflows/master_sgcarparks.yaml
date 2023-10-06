@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-      - deployment
   workflow_dispatch:
 
 jobs:
@@ -17,31 +16,37 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      # - name: Set up Node.js
+      - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
       - name: Install npm packages - server
         run: |
-          cd ./server
+          cd mern/server
           npm install
 
       - name: Install npm packages, build then copy files - client
         run: |
-          cd ./client
+          cd mern/client
           npm install
           npm run build --if-present
           cp -r ./build ../server/public
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./server -r
+      # - name: Zip artifact for deployment
+      #   run: zip release.zip ./server -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: SGCarparks-app
-          path: release.zip
+          path: mern/server
+
+      # - name: Upload artifact for deployment job
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: SGCarparks-app
+      #     path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -56,14 +61,14 @@ jobs:
         with:
           name: SGCarparks-app
 
-      - name: unzip artifact for deployment
-        run: unzip release.zip
+      # - name: unzip artifact for deployment
+      #   run: unzip release.zip
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: SGCarparks
+          app-name: 'SGCarparks'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7EFCC660FEA24E1BAD9B41003B050E1A }}
           package: .
