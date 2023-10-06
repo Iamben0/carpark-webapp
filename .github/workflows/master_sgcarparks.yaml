@@ -70,5 +70,5 @@ jobs:
         with:
           app-name: 'SGCarparks'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7EFCC660FEA24E1BAD9B41003B050E1A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_05AC36F1CA9248609FE51229DE27DF48 }}
           package: .
