@@ -16,9 +16,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+          cache: 'npm'
 
       - name: Install npm packages - server
         run: |
@@ -29,16 +32,15 @@ jobs:
         run: |
           cd ./client
           npm install
-          npm run build
+          npm run build --if-present
+          npm run test --if-present   
           cp -r ./build ../server/public
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: SGCarparks-app
-          path: | 
-            ./server
-            ./client
+          path: ./server
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,7 +59,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'SGCarparks'
+          app-name: 'carpark-webapp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}
           package: .
