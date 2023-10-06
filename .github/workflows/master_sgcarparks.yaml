@@ -45,7 +45,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with: 
           app-name: SGCarparks-app
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F22C38F8495E43A5B9C70607964A8B07 }}
           package: .
 
   # deploy:
