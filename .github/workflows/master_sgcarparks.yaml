@@ -49,7 +49,7 @@ jobs:
       #     path: release.zip
 
   deploy:
-    runs-on: window-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
