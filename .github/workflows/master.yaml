@@ -52,3 +52,5 @@ jobs:
 
       - name: Start React app in the background
         run: (cd mern/client && npm start &)
+
+        

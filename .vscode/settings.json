@@ -2,5 +2,7 @@
   "appService.zipIgnorePattern": [
     "node_modules{,/**}",
     ".vscode{,/**}"
-  ]
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/ce15d318-56fd-46d0-9932-e762c1358ffc/resourceGroups/sgcarparks/providers/Microsoft.Web/sites/SGCarparks",
+  "appService.deploySubpath": "."
 }
